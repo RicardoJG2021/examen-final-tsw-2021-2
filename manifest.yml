@@ -1,6 +1,6 @@
 ---
 applications:
-  - name: evaluate-seller
+  - name: app-citas
     memory: 512MB
     instances: 1
     buildpacks:
