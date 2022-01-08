@@ -1,13 +1,13 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { getManager } from 'typeorm';
-import { GetSellersQuery } from '../../queries/get-sellers.query';
-import { GetSellersDto } from '../../dtos/queries/get-sellers.dto';
+import { GetCitasQuery } from '../../queries/get-citas.query';
+import { GetSellersDto } from '../../dtos/queries/get-citas.dto';
 
-@QueryHandler(GetSellersQuery)
-export class GetSellersHandler implements IQueryHandler<GetSellersQuery> {
+@QueryHandler(GetCitasQuery)
+export class GetSellersHandler implements IQueryHandler<GetCitasQuery> {
   constructor() {}
 
-  async execute(query: GetSellersQuery) {
+  async execute(query: GetCitasQuery) {
     const manager = getManager();
     const sql = `
     SELECT

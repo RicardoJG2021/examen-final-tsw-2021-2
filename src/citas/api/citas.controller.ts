@@ -3,13 +3,12 @@ import { Result } from 'typescript-result';
 import { AppNotification } from '../../common/application/app.notification';
 import { ApiController } from '../../common/api/api.controller';
 import { QueryBus } from '@nestjs/cqrs';
-import { SellerApplicationService } from '../application/services/seller-application.service';
-// import { GetSellerQuery } from '../application/queries/get-seller.query';
-import { RegisterSellerRequest } from '../application/dtos/request/register-seller-request.dto';
-import { RegisterSellerResponse } from '../application/dtos/response/register-seller-response.dto';
-import { GetSellersQuery } from '../application/queries/get-sellers.query';
+import { SellerApplicationService } from '../application/services/cita-application.service'; 
+import { ProgramarCitaRequest } from '../application/dtos/request/programar-cita-request.dto';
+import { RegisterSellerResponse } from '../application/dtos/response/programar-cita-response.dto';
+import { GetCitasQuery } from '../application/queries/get-citas.query';
 
-@Controller('sellers')
+@Controller('citas')
 export class SellerController {
   constructor(
     private readonly sellerApplicationService: SellerApplicationService,
@@ -18,7 +17,7 @@ export class SellerController {
 
   @Post('/')
   async registerSeller(
-    @Body() registerSellerRequest: RegisterSellerRequest,
+    @Body() registerSellerRequest: ProgramarCitaRequest,
     @Res({ passthrough: true }) response
   ): Promise<object> {
     try {
@@ -35,7 +34,7 @@ export class SellerController {
   @Get()
   async getSellers(@Res({ passthrough: true }) response): Promise<object> {
     try {
-      const sellers = await this.queryBus.execute(new GetSellersQuery());
+      const sellers = await this.queryBus.execute(new GetCitasQuery());
       return ApiController.ok(response, sellers);
     } catch (error) {
       return ApiController.serverError(response, error);

@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AppNotification } from 'src/common/application/app.notification';
 import { Repository } from 'typeorm';
-import { SellerTypeORM } from '../../infrastructure/persistence/typeorm/entities/seller.typeorm';
-import { RegisterSellerRequest } from '../dtos/request/register-seller-request.dto';
+import { SellerTypeORM } from '../../infrastructure/persistence/typeorm/entities/cita.typeorm';
+import { ProgramarCitaRequest } from '../dtos/request/programar-cita-request.dto';
 
 @Injectable()
 export class RegisterSellerValidator {
@@ -14,7 +14,7 @@ export class RegisterSellerValidator {
   }
 
   public async validate(
-    registerSellerRequest: RegisterSellerRequest,
+    registerSellerRequest: ProgramarCitaRequest,
   ): Promise<AppNotification> {
     let notification: AppNotification = new AppNotification();
     const name: string = registerSellerRequest.name.trim();

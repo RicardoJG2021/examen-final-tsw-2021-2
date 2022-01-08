@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
 import { AuditTrailTypeORM } from '../../../../../common/infrastructure/persistence/typeorm/value-objects/audit-trail.typeorm';
-import { SellerCategory } from 'src/sellers/domain/enums/seller-category.enum';
+import { CitaCategory } from 'src/citas/domain/enums/cita-category.enum';
 import { RucTypeORM } from '../value-objects/ruc.typeorm';
 
 @Entity('seller')
@@ -15,8 +15,8 @@ export class SellerTypeORM {
   })
   public name: string;
   
-  @Column({ name: 'category', type: 'enum', enum: SellerCategory, default: SellerCategory.STANDARD })
-  public category: SellerCategory;
+  @Column({ name: 'category', type: 'enum', enum: CitaCategory, default: CitaCategory.STANDARD })
+  public category: CitaCategory;
 
   @Column((type) => RucTypeORM, { prefix: false })
   public ruc: RucTypeORM;

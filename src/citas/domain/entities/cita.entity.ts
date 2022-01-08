@@ -1,15 +1,15 @@
 import { AggregateRoot } from '@nestjs/cqrs';
-import { SellerRegistered } from '../events/seller-registered.event';
+import { SellerRegistered } from '../events/cita-programada.event';
 import { AuditTrail } from '../../../common/domain/value-objects/audit-trail.value';
-import { SellerCategory } from '../enums/seller-category.enum';
-import { SellerId } from '../value-objects/seller-id.value'; 
-import { SellerName } from '../value-objects/seller-name.value';
+import { CitaCategory } from '../enums/cita-category.enum';
+import { SellerId } from '../value-objects/cita-id.value'; 
+import { SellerName } from '../value-objects/cita-name.value';
 import { Ruc } from '../value-objects/ruc.value';
 
-export class Seller extends AggregateRoot {
+export class Cita extends AggregateRoot {
   protected id: SellerId;
   protected name: SellerName;
-  protected category: SellerCategory;
+  protected category: CitaCategory;
   protected ruc: Ruc;
   protected readonly auditTrail: AuditTrail;
 
@@ -28,7 +28,7 @@ export class Seller extends AggregateRoot {
     return this.name;
   }
 
-  public getCategory(): SellerCategory {
+  public getCategory(): CitaCategory {
     return this.category;
   }
 
@@ -48,7 +48,7 @@ export class Seller extends AggregateRoot {
     this.name = name;
   }
   
-  public changeCategory(category: SellerCategory) {
+  public changeCategory(category: CitaCategory) {
     this.category = category;
   }
  

@@ -1,10 +1,10 @@
 import { RucTypeORM } from '../../infrastructure/persistence/typeorm/value-objects/ruc.typeorm';
-import { Seller } from '../../domain/entities/seller.entity';
-import { SellerTypeORM } from '../../infrastructure/persistence/typeorm/entities/seller.typeorm';
+import { Cita } from '../../domain/entities/cita.entity';
+import { SellerTypeORM } from '../../infrastructure/persistence/typeorm/entities/cita.typeorm';
 import { AuditTrailTypeORM } from '../../../common/infrastructure/persistence/typeorm/value-objects/audit-trail.typeorm';
 
 export class SellerMapper {
-  public static toTypeORM(seller: Seller): SellerTypeORM {
+  public static toTypeORM(seller: Cita): SellerTypeORM {
     const sellerTypeORM: SellerTypeORM = new SellerTypeORM();
     sellerTypeORM.name = seller.getName().getValue();
     sellerTypeORM.ruc = RucTypeORM.from(seller.getRuc().getValue());

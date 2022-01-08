@@ -4,10 +4,10 @@ import { AppNotification } from 'src/common/application/app.notification';
 import { Result } from 'typescript-result';
 import { DateTime } from '../../../common/domain/value-objects/date-time.value';
 import { AppSettings } from '../../../common/application/app-settings';
-import { RegisterSeller } from '../commands/register-seller.command';
-import { RegisterSellerValidator } from '../validators/register-seller.validator';
-import { RegisterSellerRequest } from '../dtos/request/register-seller-request.dto';
-import { RegisterSellerResponse } from '../dtos/response/register-seller-response.dto';
+import { ProgramarCita } from '../commands/programar-cita.command';
+import { RegisterSellerValidator } from '../validators/programar-cita.validator';
+import { ProgramarCitaRequest } from '../dtos/request/programar-cita-request.dto';
+import { RegisterSellerResponse } from '../dtos/response/programar-cita-response.dto';
 
 @Injectable()
 export class SellerApplicationService {
@@ -17,7 +17,7 @@ export class SellerApplicationService {
   ) {}
 
   async register(
-    registerSellerRequest: RegisterSellerRequest,
+    registerSellerRequest: ProgramarCitaRequest,
   ): Promise<Result<AppNotification, RegisterSellerResponse>> {
     const notification: AppNotification = await this.registerSellerValidator.validate(registerSellerRequest);
     if (notification.hasErrors()) {
@@ -27,7 +27,7 @@ export class SellerApplicationService {
     const createdBy = AppSettings.SUPER_ADMIN;
     const updatedAt = null;
     const updatedBy = null;
-    const registerSeller: RegisterSeller = new RegisterSeller(
+    const registerSeller: ProgramarCita = new ProgramarCita(
       registerSellerRequest.name,
       registerSellerRequest.ruc,
       createdAt,

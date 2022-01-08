@@ -1,4 +1,4 @@
-export class RegisterSeller {
+export class ProgramarCita {
     constructor(
       public readonly name: string,
       public readonly ruc: string,

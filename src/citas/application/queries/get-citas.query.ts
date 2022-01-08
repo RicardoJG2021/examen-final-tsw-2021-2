@@ -1,2 +1,2 @@
-export class GetSellersQuery {
+export class GetCitasQuery {
 }

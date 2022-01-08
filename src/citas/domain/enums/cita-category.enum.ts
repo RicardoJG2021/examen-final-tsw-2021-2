@@ -1,4 +1,4 @@
-export enum SellerCategory {
+export enum CitaCategory {
     STANDARD = 'D',
     SILVER = 'S',
     GOLD = 'G'

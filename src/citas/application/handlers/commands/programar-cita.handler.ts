@@ -3,21 +3,21 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Result } from 'typescript-result';
 import { AppNotification } from '../../../../common/application/app.notification';
-import { RegisterSeller } from 'src/sellers/application/commands/register-seller.command';
-import { SellerId } from '../../../domain/value-objects/seller-id.value';
-import { SellerName } from '../../../domain/value-objects/seller-name.value';
+import { ProgramarCita } from 'src/citas/application/commands/programar-cita.command';
+import { SellerId } from '../../../domain/value-objects/cita-id.value';
+import { SellerName } from '../../../domain/value-objects/cita-name.value';
 import { Ruc } from '../../../domain/value-objects/ruc.value';
-import { SellerMapper } from '../../mappers/seller.mapper';
-import { SellerFactory } from '../../../domain/factories/seller.factory';
-import { Seller } from '../../../domain/entities/seller.entity';
-import { SellerTypeORM } from '../../../infrastructure/persistence/typeorm/entities/seller.typeorm';
+import { SellerMapper } from '../../mappers/cita.mapper';
+import { SellerFactory } from '../../../domain/factories/cita.factory';
+import { Cita } from '../../../domain/entities/cita.entity';
+import { SellerTypeORM } from '../../../infrastructure/persistence/typeorm/entities/cita.typeorm';
 import { AuditTrail } from '../../../../common/domain/value-objects/audit-trail.value';
 import { DateTime } from '../../../../common/domain/value-objects/date-time.value';
 import { UserId } from '../../../../users/domain/value-objects/user-id.value';
 
-@CommandHandler(RegisterSeller)
+@CommandHandler(ProgramarCita)
 export class RegisterSellerHandler
-  implements ICommandHandler<RegisterSeller> {
+  implements ICommandHandler<ProgramarCita> {
   constructor(
     @InjectRepository(SellerTypeORM)
     private sellerRepository: Repository<SellerTypeORM>,
@@ -25,7 +25,7 @@ export class RegisterSellerHandler
   ) {
   }
 
-  async execute(command: RegisterSeller) {
+  async execute(command: ProgramarCita) {
     let sellerId: number = 0;
     const sellerNameResult: Result<AppNotification, SellerName> = SellerName.create(command.name);
     if (sellerNameResult.isFailure()) {
@@ -41,7 +41,7 @@ export class RegisterSellerHandler
       command.updatedAt != null ? DateTime.fromString(command.updatedAt) : null,
       command.updatedBy != null ? UserId.of(command.updatedBy) : null
     );
-    let seller: Seller = SellerFactory.createFrom(sellerNameResult.value, rucResult.value, auditTrail);
+    let seller: Cita = SellerFactory.createFrom(sellerNameResult.value, rucResult.value, auditTrail);
     let sellerTypeORM: SellerTypeORM = SellerMapper.toTypeORM(seller);
     sellerTypeORM = await this.sellerRepository.save(sellerTypeORM);
     if (sellerTypeORM == null) {
