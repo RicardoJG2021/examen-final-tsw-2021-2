@@ -1,0 +1,8 @@
+services:
+  banking:
+    image: evaluate-seller
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
