@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { SellerController } from './api/citas.controller';
+import { CitaController } from './api/citas.controller';
 import { SellerApplicationService } from './application/services/cita-application.service';
 import { RegisterSellerValidator } from './application/validators/programar-cita.validator';
 import { RegisterSellerHandler } from './application/handlers/commands/programar-cita.handler';
@@ -19,7 +19,7 @@ export const QueryHandlers = [GetSellersHandler];
     TypeOrmModule.forFeature([SellerTypeORM]),
   ],
   exports: [TypeOrmModule],
-  controllers: [SellerController],
+  controllers: [CitaController],
   providers: [
     SellerApplicationService,
     RegisterSellerValidator,
@@ -28,4 +28,4 @@ export const QueryHandlers = [GetSellersHandler];
     ...QueryHandlers
   ]
 })
-export class SellersModule {}
+export class CitasModule {}

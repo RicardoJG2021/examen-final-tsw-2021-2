@@ -9,19 +9,19 @@ import { RegisterSellerResponse } from '../application/dtos/response/programar-c
 import { GetCitasQuery } from '../application/queries/get-citas.query';
 
 @Controller('citas')
-export class SellerController {
+export class CitaController {
   constructor(
     private readonly sellerApplicationService: SellerApplicationService,
     private readonly queryBus: QueryBus
   ) {}
 
   @Post('/')
-  async registerSeller(
-    @Body() registerSellerRequest: ProgramarCitaRequest,
+  async registerCita(
+    @Body() programarCitaRequest: ProgramarCitaRequest,
     @Res({ passthrough: true }) response
   ): Promise<object> {
     try {
-      const result: Result<AppNotification, RegisterSellerResponse> = await this.sellerApplicationService.register(registerSellerRequest);
+      const result: Result<AppNotification, RegisterSellerResponse> = await this.sellerApplicationService.register(programarCitaRequest);
       if (result.isSuccess()) {
         return ApiController.created(response, result.value);
       }
@@ -32,7 +32,7 @@ export class SellerController {
   }
 
   @Get()
-  async getSellers(@Res({ passthrough: true }) response): Promise<object> {
+  async getCitas(@Res({ passthrough: true }) response): Promise<object> {
     try {
       const sellers = await this.queryBus.execute(new GetCitasQuery());
       return ApiController.ok(response, sellers);
