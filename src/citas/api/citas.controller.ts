@@ -34,8 +34,11 @@ export class CitaController {
   @Get()
   async getCitas(@Res({ passthrough: true }) response): Promise<object> {
     try {
-      const sellers = await this.queryBus.execute(new GetCitasQuery());
-      return ApiController.ok(response, sellers);
+     // const citas = await this.queryBus.execute(new GetCitasQuery());
+     const citas = new GetCitasQuery();
+     citas.id=1;
+     citas.mensaje="Examen de Sistema de Citas para Mascota";
+      return ApiController.ok(response, citas);
     } catch (error) {
       return ApiController.serverError(response, error);
     }
